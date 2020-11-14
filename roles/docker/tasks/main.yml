@@ -1,0 +1,50 @@
+- name: "Install docker and docker-compose"
+  tags:
+    - packages
+    - docker
+  block:
+  - name: Add Docker GPG key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+    become: yes
+
+  - name: Add Docker APT repository
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+    become: yes
+
+  - name: Install docker and supporting tools
+    apt:
+      name: ['apt-transport-https','ca-certificates','curl','software-properties-common','docker-ce']
+      state: latest
+    become: yes
+
+  - name: Add "{{ansible_env.USER}}" user to docker group
+    user:
+      name: "{{ansible_env.USER}}"
+      groups: docker
+      append: yes
+    become: yes
+
+  - name: Get the local version of Docker Compose
+    shell: docker-compose -v | cut -d" " -f3 | cut -d, -f1
+    ignore_errors: yes
+    args:
+      warn: False
+    register: local_docker_compose_version
+    changed_when: false
+
+  - name: Get the latest version of Docker Compose
+    shell: curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4
+    args:
+      warn: False
+    register: latest_docker_compose_version
+    changed_when: false
+
+  - name: Download Docker Compose {{ latest_docker_compose_version.stdout }}
+    get_url:
+      url: https://github.com/docker/compose/releases/download/{{ latest_docker_compose_version.stdout }}/docker-compose-Linux-x86_64
+      dest: "/usr/local/bin/docker-compose"
+      mode: 0755
+    become: yes
+    when: local_docker_compose_version.stdout != latest_docker_compose_version.stdout
