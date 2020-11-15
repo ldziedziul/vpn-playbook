@@ -1,0 +1,15 @@
+- name: Install basic tools
+  become: yes
+  apt:
+    state: latest
+    name:
+    - curl
+    - jq
+    - htop
+    - mc
+    - ncdu
+    - tmux
+    - zip
+    - sudo
+  tags:
+    - packages
