@@ -11,6 +11,8 @@
     state: latest
     name:
     - keepassxc
+    - vlc
+    - meld
   tags:
     - packages
     - ui
