@@ -12,6 +12,7 @@
     - zip
     - sudo
     - bat
+    - youtube-dl
   tags:
     - packages
     - shell
