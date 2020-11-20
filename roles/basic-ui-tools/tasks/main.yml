@@ -1,0 +1,16 @@
+- name: Add keepassxc repository
+  apt_repository:
+    repo: ppa:phoerious/keepassxc
+  tags:
+    - packages
+    - ui
+
+- name: Install basic UI tools
+  become: yes
+  apt:
+    state: latest
+    name:
+    - keepassxc
+  tags:
+    - packages
+    - ui
