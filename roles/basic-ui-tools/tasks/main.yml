@@ -13,6 +13,15 @@
     - keepassxc
     - vlc
     - meld
+    - copyq
+    - copyq-plugins
   tags:
     - packages
+    - ui
+
+- name: Autostart CopyQ
+  copy:
+    src: roles/basic-ui-tools/files/copyq.desktop
+    dest: ~/.config/autostart/
+  tags:
     - ui
