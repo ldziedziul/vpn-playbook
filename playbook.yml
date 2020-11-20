@@ -8,5 +8,6 @@
     - shell
     - dotfiles
     - docker
+    - guake
     - basic-tools
     - java

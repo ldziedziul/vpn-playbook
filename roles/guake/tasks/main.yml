@@ -1,0 +1,15 @@
+- name: Install guake
+  become: yes
+  apt:
+    state: latest
+    name:
+      - guake
+  tags:
+    - packages
+
+- name: Load guake settings
+  shell: 'dconf load / < roles/guake/files/guake-settings.ini'
+  args:
+    warn: False
+  tags:
+    - guake
