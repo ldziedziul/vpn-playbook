@@ -11,5 +11,6 @@
     - tmux
     - zip
     - sudo
+    - bat
   tags:
     - packages
