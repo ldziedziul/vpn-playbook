@@ -1,0 +1,44 @@
+- name: Get the local version of git delta
+  shell: delta -V | cut -d" " -f2
+  ignore_errors: yes
+  args:
+    warn: False
+  register: local_git_delta_version
+  changed_when: false
+
+- name: Get the latest version of git delta
+  shell: curl -s https://api.github.com/repos/dandavison/delta/releases/latest | grep 'tag_name' | cut -d\" -f4
+  args:
+    warn: False
+  register: latest_git_delta_version
+  changed_when: false
+
+- name: Install Git Delta {{ latest_git_delta_version.stdout }}
+  apt:
+    deb: https://github.com/dandavison/delta/releases/download/{{ latest_git_delta_version.stdout }}/git-delta_{{ latest_git_delta_version.stdout }}_amd64.deb
+  become: yes
+  when: local_git_delta_version.stdout != latest_git_delta_version.stdout
+
+- name: Setup git delta
+  git_config:
+    name: "{{ item.name }}"
+    scope: global
+    value: "{{ item.value }}"
+  loop:
+    - { name: "core.pager", value: "delta" }
+    - { name: "interactive.diffFilter", value: "delta --color-only" }
+    - { name: "delta.features", value: "side-by-side line-numbers decorations" }
+    - { name: "delta.whitespace-error-style", value: "22 reverse" }
+    - { name: "delta.decorations.commit-decoration-style", value: "bold yellow box ul" }
+    - { name: "delta.decorations.file-style", value: "bold yellow ul" }
+    - { name: "delta.decorations.file-decoration-style", value: "none" }
+
+- name: Install git tools
+  become: yes
+  apt:
+    state: latest
+    name:
+      - git-cola
+  tags:
+    - packages
+    - git

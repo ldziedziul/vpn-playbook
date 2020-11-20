@@ -6,8 +6,9 @@
       cache_valid_time: 3600
   roles:
     - shell
+    - basic-tools
     - dotfiles
     - docker
     - guake
-    - basic-tools
     - java
+    - git
