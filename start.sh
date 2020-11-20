@@ -2,7 +2,7 @@
 
 set -e
 
-readonly REPOSITORY="$(git remote get-url origin)"
+REPOSITORY="git@github.com:ldziedziul/linux-playbook.git"
 TARGET="$(pwd)"
 
 RED=""
@@ -24,7 +24,7 @@ installing() {
 }
 
 generate_temp_dir() {
-    PLAYBOOK_LOCATION=$(mktemp -d -t playbook)
+    PLAYBOOK_LOCATION=$(mktemp -d -t playbookXXX)
     trap 'rm -rf "$PLAYBOOK_LOCATION"' EXIT
     git clone -q --depth=1 "${REPOSITORY}" "$PLAYBOOK_LOCATION" || error "git clone of playbook repo failed, run with --local if already cloned"
     TARGET="$PLAYBOOK_LOCATION"
