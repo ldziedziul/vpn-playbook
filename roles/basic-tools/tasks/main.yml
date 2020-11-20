@@ -13,6 +13,8 @@
     - sudo
     - bat
     - youtube-dl
+    - screen
+    - vim
   tags:
     - packages
     - shell
