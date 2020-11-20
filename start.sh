@@ -37,7 +37,13 @@ if [ -t 1 ]; then
     RESET=$(printf '\033[m')
 fi
 
-command -v "git" >/dev/null 2>&1 || error "git is not installed"
+if ! command -v git &> /dev/null;
+    then
+        installing "git"
+        sudo apt update && sudo apt install git
+    else
+        ok "git"
+fi
 
 [[ "$1" = "--local" ]] && echo "Using local copy" || generate_temp_dir
 
