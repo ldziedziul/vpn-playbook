@@ -39,8 +39,7 @@ fi
 
 if ! command -v git &> /dev/null;
     then
-        installing "git"
-        sudo apt update && sudo apt install git
+        installing "git" && sudo apt update && sudo apt install git
     else
         ok "git"
 fi
