@@ -14,7 +14,6 @@
     - { src: "~/dotfiles/git/.gitconfig-neo4j", dest: "~/.gitconfig-neo4j"}
     - { src: "~/dotfiles/git/.gitignore_global", dest: "~/.gitignore_global"}
     - { src: "~/dotfiles/tmux/.tmux.conf", dest: "~/.tmux.conf"}
-    - { src: "~/dotfiles/nvidia/.nvidia-settings-rc", dest: "~/.nvidia-settings-rc"}
     - { src: "~/.zprezto/runcoms/zlogin", dest: "~/.zlogin"}
     - { src: "~/.zprezto/runcoms/zlogout", dest: "~/.zlogout"}
     - { src: "~/.zprezto/runcoms/zpreztorc", dest: "~/.zpreztorc"}

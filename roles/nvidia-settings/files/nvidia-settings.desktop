@@ -3,6 +3,6 @@ Name=Load nvidia settings
 Type=Application
 Terminal=false
 
-Exec="/usr/bin/nvidia-settings -l"
+Exec="/usr/bin/nvidia-settings --config ~/dotfiles/nvidia/.nvidia-settings-rc -l"
 Hidden=False
 X-GNOME-Autostart-enabled=true
