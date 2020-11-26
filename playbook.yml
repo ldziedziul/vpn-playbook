@@ -4,6 +4,13 @@
   module_defaults:
     apt:
       cache_valid_time: 3600
+  pre_tasks:
+    - name: Gather the package facts
+      package_facts:
+        manager: apt
+      tags:
+        - packages
+        - zoom
   roles:
     - shell
     - basic-tools
@@ -14,3 +21,4 @@
     - git
     - basic-ui-tools
     - nvidia-settings
+    - zoom
