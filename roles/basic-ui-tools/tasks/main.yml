@@ -15,6 +15,7 @@
     - meld
     - copyq
     - copyq-plugins
+    - flameshot
   tags:
     - packages
     - ui
@@ -23,5 +24,12 @@
   copy:
     src: roles/basic-ui-tools/files/copyq.desktop
     dest: ~/.config/autostart/
+  tags:
+    - ui
+
+- name: Setup flameshot keyboard shortcut
+  shell: 'dconf load / < roles/basic-ui-tools/files/flameshot-keyboard-shortcut.ini'
+  args:
+    warn: False
   tags:
     - ui
