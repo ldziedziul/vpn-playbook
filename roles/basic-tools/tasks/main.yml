@@ -15,6 +15,7 @@
     - youtube-dl
     - screen
     - vim
+    - awscli
   tags:
     - packages
     - shell
