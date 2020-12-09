@@ -16,6 +16,7 @@
     - screen
     - vim
     - awscli
+    - fzf
   tags:
     - packages
     - shell
