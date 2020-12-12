@@ -1,0 +1,15 @@
+- name: Install fortune
+  become: yes
+  apt:
+    state: latest
+    name:
+      - fortunes
+      - fortunes-bofh-excuses
+      - fortunes-debian-hints
+      - fortunes-off
+      - fortunes-pl
+      - fortunes-ubuntu-server
+  tags:
+    - packages
+    - shell
+    - fortune
