@@ -25,6 +25,9 @@
     shell: 'cat /etc/wireguard/private.key'
     register: private_key
     become: true
+  - name: Store private_key as fact # You can skip this if you want to use the right hand side directly...
+    ansible.builtin.set_fact:
+      private_key: "{{ private_key.stdout }}"
   - name: Create wireguard config
     template:
       src: templates/wg0.conf.j2
