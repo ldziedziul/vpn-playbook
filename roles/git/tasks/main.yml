@@ -1,15 +1,11 @@
 - name: Get the local version of git delta
   shell: delta -V | cut -d" " -f2
   ignore_errors: yes
-  args:
-    warn: False
   register: local_git_delta_version
   changed_when: false
 
 - name: Get the latest version of git delta
   shell: curl -s https://api.github.com/repos/dandavison/delta/releases/latest | grep 'tag_name' | cut -d\" -f4
-  args:
-    warn: False
   register: latest_git_delta_version
   changed_when: false
 
