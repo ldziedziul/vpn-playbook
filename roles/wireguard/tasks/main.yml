@@ -8,33 +8,36 @@
       name: ['wireguard']
       state: latest
     become: yes
-- name: Check if private key exists
-  stat:
-    path: /etc/wireguard/private.key
-  register: private_key_path
-- name: Generate private and public key
-  when: "not private_key_path.stat.exists"
-  become: true
-  shell: | 
-    wg genkey | tee /etc/wireguard/private.key
-    chmod go= /etc/wireguard/private.key
-    cat /etc/wireguard/private.key | wg pubkey | tee /etc/wireguard/public.key
-    chmod 600
-- name: Create wireguard config
-  template:
-    src: templates/wg0.conf.j2
-    dest: /etc/wireguard/wg0.conf
-    chmod: 600
-- name: Enable net.ipv4.ip_forward
-  ansible.posix.sysctl:
-    name: net.ipv4.ip_forward
-    value: '1'
-    sysctl_set: true
-    state: present
-    reload: true
-- name: Enable wireguard service
-  become: true
-  shell: |
-    systemctl enable wg-quick@wg0.service
-    systemctl start wg-quick@wg0.service
-    systemctl status wg-quick@wg0.service
+  - name: Check if private key exists
+    stat:
+      path: /etc/wireguard/private.key
+    register: private_key_path
+    become: true
+  - name: Generate private and public key
+    when: "not private_key_path.stat.exists"
+    become: true
+    shell: | 
+      wg genkey | tee /etc/wireguard/private.key
+      chmod go= /etc/wireguard/private.key
+      cat /etc/wireguard/private.key | wg pubkey | tee /etc/wireguard/public.key
+      chmod 600
+  - name: Create wireguard config
+    template:
+      src: templates/wg0.conf.j2
+      dest: /etc/wireguard/wg0.conf
+      chmod: 600
+    become: true
+  - name: Enable net.ipv4.ip_forward
+    ansible.posix.sysctl:
+      name: net.ipv4.ip_forward
+      value: '1'
+      sysctl_set: true
+      state: present
+      reload: true
+    become: true
+  - name: Enable wireguard service
+    become: true
+    shell: |
+      systemctl enable wg-quick@wg0.service
+      systemctl start wg-quick@wg0.service
+      systemctl status wg-quick@wg0.service
