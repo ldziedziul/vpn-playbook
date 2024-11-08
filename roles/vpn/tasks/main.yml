@@ -1,0 +1,9 @@
+- name: "Install docker and docker-compose"
+  tags:
+    - packages
+  block:
+    - name: Install docker and supporting tools
+      apt:
+        name: ['wireguard']
+        state: latest
+      become: yes
