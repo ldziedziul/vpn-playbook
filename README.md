@@ -1,4 +1,4 @@
-My Ansible-backed Linux personal configuration.
+My Ansible-backed VPN server configuration.
 
 Run with:
 
