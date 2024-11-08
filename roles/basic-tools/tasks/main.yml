@@ -3,17 +3,18 @@
   apt:
     state: latest
     name:
+    - bat
     - curl
-    - jq
+    - fzf
     - htop
+    - jq
     - mc
     - ncdu
-    - tmux
-    - zip
-    - bat
     - screen
+    - tmux
     - vim
-    - fzf
+    - zip
+    - zsh
   tags:
     - packages
     - shell
