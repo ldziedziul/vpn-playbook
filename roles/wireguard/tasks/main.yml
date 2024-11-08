@@ -11,7 +11,7 @@
 - name: Check if private key exists
   stat:
     path: /etc/wireguard/private.key
-    register: private_key_path
+  register: private_key_path
 - name: Generate private and public key
   when: "not private_key_path.stat.exists"
   become: true
