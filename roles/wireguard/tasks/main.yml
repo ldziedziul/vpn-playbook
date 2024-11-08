@@ -21,6 +21,9 @@
       chmod go= /etc/wireguard/private.key
       cat /etc/wireguard/private.key | wg pubkey | tee /etc/wireguard/public.key
       chmod 600 /etc/wireguard/public.key
+  - name: get content of local file
+    set_fact:
+      private_key: "{{ lookup('file', '/etc/wireguard/private.key') }}"
   - name: Create wireguard config
     template:
       src: templates/wg0.conf.j2
