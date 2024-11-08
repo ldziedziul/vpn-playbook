@@ -55,7 +55,7 @@ done
 
 if ! command -v ansible &> /dev/null;
     then
-        installing "ansible" && apt update && apt install ansible
+        installing "ansible" && sudo apt update && sudo apt install ansible
     else
         ok "ansible"
 fi
