@@ -32,7 +32,7 @@
     template:
       src: templates/wg0.conf.j2
       dest: /etc/wireguard/wg0.conf
-      mod: 600
+      mode: 600
     become: true
   - name: Enable net.ipv4.ip_forward
     ansible.posix.sysctl:
