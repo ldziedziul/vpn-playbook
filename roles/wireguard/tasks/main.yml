@@ -24,6 +24,7 @@
   - name: get content of local file
     set_fact:
       private_key: "{{ lookup('file', '/etc/wireguard/private.key') }}"
+    become: true
   - name: Create wireguard config
     template:
       src: templates/wg0.conf.j2
