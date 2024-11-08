@@ -6,7 +6,6 @@
       - fortunes
       - fortunes-bofh-excuses
       - fortunes-debian-hints
-      - fortunes-off
       - fortunes-pl
       - fortunes-ubuntu-server
   tags:
