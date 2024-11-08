@@ -2,7 +2,7 @@
 
 set -e
 
-REPOSITORY="git@github.com:ldziedziul/linux-playbook.git"
+REPOSITORY="git@github.com:ldziedziul/vpn-playbook.git"
 TARGET="$(pwd)"
 
 RED=""

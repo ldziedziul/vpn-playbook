@@ -1,7 +1,0 @@
-- name: Load nvidia settings on X login
-  copy:
-    src: roles/nvidia-settings/files/nvidia-settings.desktop
-    dest: ~/.config/autostart/
-  tags:
-    - ui
-    - nvidia

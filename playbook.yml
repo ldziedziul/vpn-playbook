@@ -10,16 +10,9 @@
         manager: apt
       tags:
         - packages
-        - zoom
   roles:
-    - shell
     - basic-tools
-    - dotfiles
     - docker
-    - guake
-    - git
-    - basic-ui-tools
-    - nvidia-settings
-    - zoom
-    - sdkman
     - fortune
+    - git
+    - shell
